@@ -9,12 +9,17 @@
 <link rel="stylesheet" href="css/seat.css">
 </head>
 <body>
+
+	<form action="place.jsp">
+
 	<%
 	request.setCharacterEncoding("UTF-8");
 	String[] gender= request.getParameterValues("gender");
 	
 	int total=0;
-	
+	String female_number="";
+	String male_number="";
+
 	try{
 	for(int i=0;i<gender.length;i++){
 		out.println(gender[i]);
@@ -22,44 +27,72 @@
 			int start= Integer.valueOf(request.getParameter("f_start_num"));
 			int end= Integer.valueOf(request.getParameter("f_end_num"));
 			String num =request.getParameter("f_not_num").replaceAll(" ","");
-			String[] numArray;
+			String[] numArray=null;
 			int not_num = 0;
 			if(!num.equals("")){
 				numArray=num.split(",");
 				not_num=numArray.length;
 			}
+			int fe_num = end - start +1 - not_num;
+			total+= fe_num;
+			int not_index=0;
+			for(int j=start;j<=end;j++){
+				if(not_num!=0 && not_index<not_num && numArray[not_index].equals(String.valueOf(j))){
+					not_index++;
+					continue;
+				}
+				female_number+=j+",";
+				
+			}
 			
 
-			total+= end - start +1 - not_num;
 			
 			
 		}else if(gender[i].equals("남자")){
 			int start= Integer.valueOf(request.getParameter("m_start_num"));
 			int end= Integer.valueOf(request.getParameter("m_end_num"));
 			String num =request.getParameter("m_not_num").replaceAll(" ","");
-			String[] numArray;
+			String[] numArray=null;
 			int not_num = 0;
 			if(!num.equals("")){
 				numArray=num.split(",");
 				not_num=numArray.length;
 			}
 			
+			int me_num = end - start +1 - not_num;
 
-			total+= end - start +1 - not_num;
-			
+			total+= me_num;
+			int not_index=0;
+			for(int j=start;j<=end;j++){
+				if(not_num!=0 && not_index<not_num && numArray[not_index].equals(String.valueOf(j))){
+					not_index++;
+					continue;
+				}
+				male_number+=j+",";
+				
+			}
 		}
 	}
 
 	}catch(Exception e){
 		e.printStackTrace();
 	}
-	
+	//System.out.println(female_number);
+
+	//System.out.println(male_number);
+		out.println("<input type='text' id='space_num' name='space_num' value='"+female_number+"' hidden='true'>");
+
+	out.println("<input type='text' id='female_number' name='female_number' value='"+female_number+"' hidden='true'>");
+	out.println("<input type='text' id='male_number' name='male_number' value='"+male_number+"' hidden='true'>");
 
 %>
 
 
+<input type="text" id="col_h" name="col" value="" hidden="true">
+<input type="text" id="row_h" name="row" value="" hidden="true">
 
-	<form action="table.jsp">
+
+
 		<table border="1" id="input-table">
 
 			<tr>
@@ -93,6 +126,7 @@
 			</tr>
 
 		</table>
+		
 	</form>
 </body>
 </html>

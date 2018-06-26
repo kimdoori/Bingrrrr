@@ -64,6 +64,19 @@ function placeTable(total){
         table.className ="seat_table";
         var seat_count=1;
 
+    	
+    	var row_h = document.getElementById("row_h");
+    	row_h.value=table_row;
+    	
+    	var col_h = document.getElementById("col_h");
+    	col_h.value=min_seat_num;
+    	
+    	var space_num = Number(line_num) + 1;
+
+    	var space_num_h = document.getElementById("space_num");
+    	space_num_h.value=space_num;
+    	
+        
         for(var i=0;i<table_row;i++){
             var count=1;
 
@@ -79,11 +92,12 @@ function placeTable(total){
             		allowDrop(e);
             	});
             	
-            	td.innerHTML="<div id='seat"+i+j+"' class='seat'></div>";
-            	var space_num = Number(line_num) + 1;
+            	td.innerHTML="<div id='seat"+i+"_"+j+"' class='seat'></div>";
             	
             	if(seat_count>total){
-                	td.innerHTML="<div id='seat"+i+j+"' class='space' draggable='true' ondragstart='drag(event)'></div>";
+                	td.innerHTML="<div id='seat"+i+"_"+j+"' class='space' draggable='true' ondragstart='drag(event)'>"
+                	+"<input type='text' name='space' value='seat"+i+"_"+j+"' hidden='true'>"
+                	+"</div>";
             	}
             	if(count%space_num==0){
                 	td.innerHTML="<div id='none' class='none'></div>";
@@ -135,11 +149,15 @@ function drop(ev) {
     dragObject.addEventListener("dragstart", function(e){
 		
 	});
+    dragObject.innerHTML="";
+
     
     ev.target.draggable="true";
     ev.target.addEventListener("dragstart", function(e){
 		drag(e);
 	});
+    ev.target.innerHTML = "<input type='text' name='space' value='"+ev.target.id+"' hidden='true'>";
+
     
 //    if(dragObject.id=="character"){
 //    	if(ev.target.id.includes("imageAnswer")){
