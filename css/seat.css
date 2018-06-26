@@ -22,8 +22,10 @@
 
 .seat_table td{
 	/*  border:1px solid black;*/
+	position:relative;
 }
 .seat{
+	position:relative;
 	background-color:#f0af75;
 	width:2em;
 	height:2em;
@@ -39,4 +41,24 @@
 	/* background-color:#5e5e5e; */
 	width:1.5em;
 	height:1.5em;
+}
+
+.female_num{
+	color:pink;
+	display:inline-block;
+	border:1px solid pink;
+	border-radius:1em;
+	width:2em;
+	height:1.5em;
+	background-color:white;
+}
+.male_num{
+	color:skyblue;
+	display:inline-block;
+	border:1px solid skyblue;
+	border-radius:1em;
+	width:2em;
+	height:1.5em;
+		background-color:white;
+	
 }

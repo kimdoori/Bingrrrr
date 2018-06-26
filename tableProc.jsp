@@ -80,7 +80,7 @@
 	//System.out.println(female_number);
 
 	//System.out.println(male_number);
-		out.println("<input type='text' id='space_num' name='space_num' value='"+female_number+"' hidden='true'>");
+		out.println("<input type='text' id='space_num' name='space_num' value='' hidden='true'>");
 
 	out.println("<input type='text' id='female_number' name='female_number' value='"+female_number+"' hidden='true'>");
 	out.println("<input type='text' id='male_number' name='male_number' value='"+male_number+"' hidden='true'>");
