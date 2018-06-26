@@ -38,3 +38,56 @@ function choiceGender(gender){
 	}
 	
 }
+
+
+function placeTable(total){
+    var line = document.getElementById("line");
+    var line_num = line.options[line.selectedIndex].value;
+    
+    var group = document.getElementById("group");
+    var group_num = group.options[group.selectedIndex].value;
+    var min_seat_num = line_num*group_num;
+    var table_row=1;
+    if(min_seat_num<=total){
+
+    	var seat_table = document.getElementById("seat-table");
+        seat_table.innerHTML="";
+        
+        for(var i=1;i<total;i++){
+        	if(min_seat_num*i>=total){
+        		table_row=i;
+        		break;
+        	}
+        }
+        
+        var table = document.createElement('table');
+        table.className ="seat_table";
+        
+        for(var i=0;i<table_row;i++){
+            var count=1;
+
+        	var tr = document.createElement('tr');
+        	
+        	for(var j=0;j<min_seat_num;j++){
+            	var td = document.createElement('td');
+            	td.innerHTML="<div class='seat'></div>";
+            	var space_num = Number(line_num) + 1;
+
+            	if(count%space_num==0){
+                	td.innerHTML="<div class='space'></div>";
+            		j--;
+            	}
+            	tr.appendChild(td);
+            	 count++;
+        	}
+        	table.appendChild(tr);
+
+        }
+        seat_table.appendChild(table);
+        
+
+    }else{
+    	alert("인원이 너무 적어 해당 책상 배치로는 학생을 배치할 수 없습니다.");
+    }
+
+}
