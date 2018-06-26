@@ -71,14 +71,22 @@ function placeTable(total){
         	
         	for(var j=0;j<min_seat_num;j++){
             	var td = document.createElement('td');
-            	td.innerHTML="<div class='seat'></div>";
+            	
+            	td.addEventListener("drop", function(e){
+            	    drop(e);
+            	});
+            	td.addEventListener("dragover", function(e){
+            		allowDrop(e);
+            	});
+            	
+            	td.innerHTML="<div id='seat"+i+j+"' class='seat'></div>";
             	var space_num = Number(line_num) + 1;
-
+            	
             	if(seat_count>total){
-                	td.innerHTML="<div class='space'></div>";
+                	td.innerHTML="<div id='seat"+i+j+"' class='space' draggable='true' ondragstart='drag(event)'></div>";
             	}
             	if(count%space_num==0){
-                	td.innerHTML="<div class='none'></div>";
+                	td.innerHTML="<div id='none' class='none'></div>";
             		j--;
             		seat_count--;
             	}
@@ -99,4 +107,65 @@ function placeTable(total){
     	alert("인원이 너무 적어 해당 책상 배치로는 학생을 배치할 수 없습니다.");
     }
 
+}
+
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+    
+    
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    var dragObject = document.getElementById(data);
+    
+    dragObject.className ="seat";
+    //dragObject.id="seat";
+    ev.target.className ="space";
+    
+    //ev.target.id ="space";
+
+    dragObject.draggable="false";
+    dragObject.addEventListener("dragstart", function(e){
+		
+	});
+    
+    ev.target.draggable="true";
+    ev.target.addEventListener("dragstart", function(e){
+		drag(e);
+	});
+    
+//    if(dragObject.id=="character"){
+//    	if(ev.target.id.includes("imageAnswer")){
+//    		ev.target.parentElement.appendChild(dragObject);
+//    		dragObject.style.position="relative";
+//    		dragObject.style.top="-85px";
+//    		dragObject.style.left="-20px";
+//    		//TODO : 이미지가 있는 테이블에 놓았을 때 
+//    		checkImageChinese(ev.target.id);
+//    		return;
+//    	}
+//		dragObject.style.position="static";
+//
+//        ev.target.appendChild(dragObject);
+//
+//    }else{
+//  
+//   	if(ev.target.id == "imageList"){
+//   		dragObject.style.width="50px";
+//   		dragObject.style.height="50px";
+//   		
+//   	}else{
+//   		dragObject.style.width="100%";
+//   		dragObject.style.height="100%";
+//   	}
+//    
+//    ev.target.appendChild(dragObject);
+//    }
 }
