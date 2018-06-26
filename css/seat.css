@@ -1,0 +1,17 @@
+#input-table{
+	width:50%;
+	margin:auto;
+	text-align:center;
+	margin-top:2em;
+}
+#input-table td{
+	
+	padding:1em;
+}
+#input-table input{
+	border-bottom:1px solid black;
+	border-top:0px solid black;
+	border-left:0px solid black;
+	border-right:0px solid black;
+	
+}
