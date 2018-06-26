@@ -30,6 +30,12 @@
 	border:1px solid black;
 }
 .space{
+	background-color:#808080;
+	width:2em;
+	height:2em;
+	border:1px solid black;
+}
+.none{
 	/* background-color:#5e5e5e; */
 	width:1.5em;
 	height:1.5em;

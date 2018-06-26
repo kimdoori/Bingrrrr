@@ -53,7 +53,7 @@ function placeTable(total){
     	var seat_table = document.getElementById("seat-table");
         seat_table.innerHTML="";
         
-        for(var i=1;i<total;i++){
+        for(var i=1;i<total+1;i++){
         	if(min_seat_num*i>=total){
         		table_row=i;
         		break;
@@ -62,7 +62,8 @@ function placeTable(total){
         
         var table = document.createElement('table');
         table.className ="seat_table";
-        
+        var seat_count=1;
+
         for(var i=0;i<table_row;i++){
             var count=1;
 
@@ -73,12 +74,20 @@ function placeTable(total){
             	td.innerHTML="<div class='seat'></div>";
             	var space_num = Number(line_num) + 1;
 
-            	if(count%space_num==0){
+            	if(seat_count>total){
                 	td.innerHTML="<div class='space'></div>";
-            		j--;
             	}
+            	if(count%space_num==0){
+                	td.innerHTML="<div class='none'></div>";
+            		j--;
+            		seat_count--;
+            	}
+
+            	
+            	
             	tr.appendChild(td);
             	 count++;
+            	 seat_count++;
         	}
         	table.appendChild(tr);
 

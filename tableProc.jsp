@@ -87,7 +87,7 @@
 			<tr>
 				<td>
 					<button class="back" type="button" onclick="goBack()">뒤로
-						가기</button> <input type="reset" value="다시 작성"> <input type="submit"
+						가기</button><input type="submit"
 					value="다음으로">
 				</td>
 			</tr>
