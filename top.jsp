@@ -21,7 +21,7 @@
 <tr>
 <td>
 <div style="text-align:center;padding:8px;">
-<h2 id="logo"><a href="index.jsp">Bingrrrr</a></h2>
+<h2 id="logo"><a href="seat.jsp">Bingrrrr</a></h2>
 </div>
 </td>
 </tr>
@@ -33,7 +33,7 @@
  <ul class="area">
 <li class="item">
 	<div class="top-menu-container" style="float:left;">
-		<button class="top-menu-btn"><a href="index.jsp">자리 배치</a></button>
+		<button class="top-menu-btn"><a href="seat.jsp">자리 배치</a></button>
 	</div>
 </li>
 <li class="item">

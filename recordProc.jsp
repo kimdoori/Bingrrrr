@@ -7,12 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div style="text-align:center;">
-<video autoplay>
-<source src="video/the greatest show.mp4" type="video/mp4">
-<source src="video/the greatest show.mp4" type="video/ogg">
-</video>
-</div>
 
 </body>
 </html>

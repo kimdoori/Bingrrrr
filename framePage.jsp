@@ -6,7 +6,7 @@
 <head>
 <meta charset ="UTF-8">
 <title>자리 배치</title>
-<link rel="stylesheet" href="css/form.css">
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
@@ -47,11 +47,6 @@ body,html{
 	</td>
 	
 	
-</tr>
-<tr>
-<td colspan="2"><jsp:include page="bottom.jsp" flush="false"/></td>
-
-
 </tr>
 
 </table>
