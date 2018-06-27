@@ -18,7 +18,7 @@
 	
 	String option = request.getParameter("gen_option");
 	
-	System.out.println();
+	//out.println(option);
 	out.println("<input type='text'  name='gen_option' value='"+option+"' hidden='true'>");
 
 	int total=0;
@@ -27,7 +27,7 @@
 
 	try{
 	for(int i=0;i<gender.length;i++){
-		out.println(gender[i]);
+		//out.println(gender[i]);
 		if(gender[i].equals("여자")){
 			int start= Integer.valueOf(request.getParameter("f_start_num"));
 			int end= Integer.valueOf(request.getParameter("f_end_num"));
