@@ -36,11 +36,11 @@
 		<button class="top-menu-btn"><a href="seat.jsp">자리 배치</a></button>
 	</div>
 </li>
-<li class="item">
+<!-- <li class="item">
 	<div class="top-menu-container" style="float:left;">
 		<button class="top-menu-btn"><a href="record.jsp">기록</a></button>
 	</div>
-</li>
+</li> -->
 </ul>
 
 </div>

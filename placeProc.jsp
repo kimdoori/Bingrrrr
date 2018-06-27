@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="js/place.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<!-- <script src="js/html2canvas.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
 
 <link rel="stylesheet" href="css/place.css">
 </head>
@@ -132,12 +135,67 @@
 						가기</button>
 					<button type="button"
 						onclick="randomSeat(<%=option%>,<%=row %>,<%=col %>,<%=space_num%>,'<%=female_number%>','<%=male_number%>')">배치하기
-					</button> <input type="submit" value="저장하기">
+					</button> <button type="button" id="show-save">저장하기</button>
+					<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <button type="button" id="btn-Preview-Image">캡쳐</button>
+<a id="btn-Convert-Html2Image">저장</a>
+
+
+<div id="previewImage"></div>
+  </div>
+
+</div>
 				</td>
 			</tr>
 
 		</table>
 
 	</form>
+	<script>
+
+
+var element = $("#seat-table"); // global variable
+
+var getCanvas; // global variable
+
+
+//저장
+
+	$("#btn-Preview-Image").on('click', function () {
+		
+		
+		html2canvas(element, {
+
+         	onrendered: function (canvas) {
+
+         		var image = document.getElementById("previewImage");
+         		image.innerHTML="";
+                $("#previewImage").append(canvas);
+
+                getCanvas = canvas;
+                var imgageData = getCanvas.toDataURL("image/png");
+
+        	    // Now browser starts downloading it instead of just showing it
+
+        	    var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
+
+        	    $("#btn-Convert-Html2Image").attr("download", "자리표.png").attr("href", newData);
+
+        		}
+             })
+
+         });
+
+
+	   
+
+
+
+
+</script>
 </body>
 </html>
