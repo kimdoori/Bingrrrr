@@ -21,7 +21,7 @@
 				request.setCharacterEncoding("UTF-8");
 				
 				String option = request.getParameter("gen_option");
-				System.out.println(option);
+				//System.out.println(option);
 				
 				String female_number="";
 				String male_number="";
@@ -131,7 +131,7 @@
 					<button class="back" type="button" onclick="goBack()">뒤로
 						가기</button>
 					<button type="button"
-						onclick="randomSeat(<%=row %>,<%=col %>,<%=space_num%>,'<%=female_number%>','<%=male_number%>')">배치하기
+						onclick="randomSeat(<%=option%>,<%=row %>,<%=col %>,<%=space_num%>,'<%=female_number%>','<%=male_number%>')">배치하기
 					</button> <input type="submit" value="저장하기">
 				</td>
 			</tr>
