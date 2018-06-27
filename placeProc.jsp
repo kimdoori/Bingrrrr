@@ -19,6 +19,10 @@
 				<%
 
 				request.setCharacterEncoding("UTF-8");
+				
+				String option = request.getParameter("gen_option");
+				System.out.println(option);
+				
 				String female_number="";
 				String male_number="";
 				try {

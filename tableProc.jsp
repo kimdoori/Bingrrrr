@@ -16,6 +16,11 @@
 	request.setCharacterEncoding("UTF-8");
 	String[] gender= request.getParameterValues("gender");
 	
+	String option = request.getParameter("gen_option");
+	
+	System.out.println();
+	out.println("<input type='text'  name='gen_option' value='"+option+"' hidden='true'>");
+
 	int total=0;
 	String female_number="";
 	String male_number="";
