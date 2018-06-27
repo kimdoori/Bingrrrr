@@ -98,7 +98,7 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     var dragObject = document.getElementById(data);
-    
+        
 //    dragObject.className ="seat";
 //    //dragObject.id="seat";
 //    ev.target.className ="space";
@@ -109,6 +109,15 @@ function drop(ev) {
 //    dragObject.addEventListener("dragstart", function(e){
 //		
 //	});
+    
+    if(dragObject.parentElement.id.includes("seat")){
+    	//dragObject.parentElement.name="seat";
+    	dragObject.parentElement.setAttribute("name","seat");
+
+    	dragObject.parentElement.className="seat";
+    	dragObject.parentElement.innerHTML="";
+    }
+
     var id = dragObject.id.replace("male_num_","");
     id = id.replace("fe","");
     dragObject.innerHTML=id;
@@ -118,15 +127,24 @@ function drop(ev) {
 //    ev.target.addEventListener("dragstart", function(e){
 //		drag(e);
 //	});
-    ev.target.innerHTML = "<input type='text' name='fix' value='"+ev.target.id+"' hidden='true'>";
+    
+    if(ev.target.id.includes("num-list")){
+    	ev.target.appendChild(dragObject);
+    	dragObject.style.position="static";
+		
+    	return;
+    }
+    ev.target.innerHTML = "<input type='text' id='num_"+ev.target.id+"' name='fix' value='"+dragObject.id+"' hidden='true'>";
+    ev.target.setAttribute("name","fix_seat");
 
+    ev.target.className="fix-seat";
    // alert(ev.target.id);
     	if(ev.target.id.includes("seat")){
-    		ev.target.parentElement.appendChild(dragObject);
+    		ev.target.appendChild(dragObject);
     		dragObject.style.position="absolute";
-    		dragObject.style.top="1.2em";
+    		dragObject.style.top="0.8em";
     		
-    		dragObject.style.right="1em";
+    		dragObject.style.right="0.33em";
     		//TODO:자리에 이미 있는
     		//check(ev.target.id);
     		return;
@@ -138,29 +156,175 @@ function drop(ev) {
   
 }
 
+var placeArray;
+var already="";
+var fix_already="";
 
-
-
-function randomSeat(row,col,space_num){
-	var fix = document.getElementsByName("fix");
-	//alert(fix[0].value);
-	var fix_index=0;
+function init(row,col){
+	placeArray = new Array(row); // 매개변수는 배열의 크기
+	already="";
+	fix_already="";
+	for (var i = 0; i < row; i++) {
+		placeArray[i] = new Array(col); // 매개변수는 배열의 크기
+	}
 	
-	var td = document.getElementsByName("td");
-	for(var i=0;i<td.lengtj;i++){
-		
-		if(fix_index<fix.length){
-			 var fix_seat= fix[fix_index].replace("seat").split("_");
-			 if(fix_seat[0]==i && fix_seat[1]==j){
-				 continue;
-			 }
+	for(var i=0;i<row;i++){
+		for(var j=0;j<col;j++){
+			placeArray[i][j]="y_";
+			//console.log(placeArray[i][j]);
 		}
-		//랜덤으로 배
+	}
+	
+	
+	var fix_seat = document.getElementsByName("fix_seat");
+	
+	for(var i=0;i<fix_seat.length;i++){
+		var seat_key = fix_seat[i].id.replace("seat","").split("_");
+		//alert(fix_seat[i].id);
+		var seat_num = document.getElementById("num_"+fix_seat[i].id);
+
+		placeArray[Number(seat_key[0])][Number(seat_key[1])]=seat_num.value;
+		fix_already+=seat_num.value;
 
 	}
-	var female_num = document.getElementsByName("female_num");
 	
-	var male_num = document.getElementsByName("male_num");
+	
+	var space_seat = document.getElementsByName("space_seat");
+	
+	for(var i=0;i<space_seat.length;i++){
+		var seat_key = space_seat[i].id.replace("seat","").split("_");
+		//alert(seat_key[0]);
 
+		placeArray[Number(seat_key[0])][Number(seat_key[1])]="n_";
+
+	}
+	
+	
+	for(var i=0;i<row;i++){
+		for(var j=0;j<col;j++){
+			console.log("["+i+"]"+"["+j+"]"+placeArray[i][j]);
+		}
+	}
+	
 	
 }
+
+function randomSeat(row,col,space_num,female_number,male_number){
+	init(row,col);
+	
+	
+	var female_array = female_number.split(",");
+//	for(var i=0;i<female_array.length;i++){
+//			console.log(female_array[i]);
+//	}
+	var female_count = female_array.length-1;
+	
+	var male_array = male_number.split(",");
+//	for(var i=0;i<male_array.length;i++){
+//		console.log(male_array[i]);
+//	}
+	var male_count = male_array.length-1;
+	
+	
+	var isBothChecked=true;
+	if(female_count>=1 && male_count>=1){
+		isBothChecked=true;
+	}else{
+		isBothChecked=false;
+
+	}
+
+	for(var i=0;i<row;i++){
+		for(var j=0;j<col;j++){
+			
+			if(placeArray[i][j].includes("n_") || placeArray[i][j].includes("num")){
+				continue;
+			}else{
+				
+				var gender_ran = 0;
+				
+				if(isBothChecked){//둘다 체크라면
+					
+					//상관없음 선택했을경우
+					option_3();
+					
+				}else{
+					
+					if(male_count>=1){//남자만
+						onlyOne("male",male_array,male_count,i,j);
+					}
+					else{//여자만
+						onlyOne("female",female_array,female_count,i,j);
+					}
+
+					
+					
+					
+				}
+
+				
+			}
+		}
+	}
+	
+}
+function option_3(){
+	gender_ran = Math.floor(Math.random() * 2);//0또는 1
+}
+
+
+function onlyOne(gender,num_array,count,i,j){
+	//이미 있는 거는 걸러야지,,
+	//alert(fix_already); female_num_19
+	var num_list = document.getElementById("num-list");
+	num_list.innerHTML="";
+	var flag=0;
+	
+	
+	
+	while(flag==0){
+		flag=1;
+		//alert(count);
+	var ran = Math.floor(Math.random() * count);
+
+	if(already.includes("."+ran+",")){
+	//	alert("."+ran+","+" : already"+already);
+		flag=0;
+		continue;
+	}
+	if(fix_already.includes(gender+"_num_"+num_array[ran])){
+		flag=0;
+		continue;
+	}
+	
+	var td = document.getElementById("seat"+i+"_"+j);
+	var div = document.createElement('div');
+	
+	if(gender == "male"){//남자라면
+		div.setAttribute("id","male_num_"+num_array[ran]);
+		div.setAttribute("class","male_num");
+
+	}else{
+		div.setAttribute("id","female_num_"+num_array[ran]);
+		div.setAttribute("class","female_num");
+	}
+	div.setAttribute("draggable","true");
+	div.draggable="true";
+
+	div.addEventListener("dragstart", function(e){
+			drag(e);
+	});
+	div.innerHTML=num_array[ran];
+	
+	div.style.position="absolute";
+	div.style.top="0.8em";
+	
+	div.style.right="0.33em";
+
+	td.appendChild(div);
+	already+="."+ran+",";
+	}
+}
+
+
+

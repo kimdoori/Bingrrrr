@@ -27,20 +27,20 @@
 .seat{
 	position:relative;
 	background-color:#f0af75;
-	width:2em;
-	height:2em;
+	width:3em;
+	height:3em;
 	border:1px solid black;
 }
 .space{
 	background-color:#808080;
-	width:2em;
-	height:2em;
+	width:3em;
+	height:3em;
 	border:1px solid black;
 }
 .fix-seat{
 	background-color:#bf6615;
-	width:2em;
-	height:2em;
+	width:3em;
+	height:3em;
 	border:1px solid black;
 }
 .none{
