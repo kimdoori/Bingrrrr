@@ -79,3 +79,19 @@ font-size:2.2em;
   text-align: center;
   line-height: 30px;
 }
+
+.button {
+	 font-size:1em;
+    color: white;
+    background-color: #400040;
+    width:11em;
+    padding:0.4em;
+    border-radius: 2em;
+    cursor: pointer;
+    font-family: 'Jua', sans-serif;
+    margin: 1em;
+}
+.button:hover{
+	    background-color: #808080;
+	
+}

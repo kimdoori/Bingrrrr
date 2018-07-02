@@ -3,6 +3,8 @@
 	margin:auto;
 	text-align:center;
 	margin-top:2em;
+	border-collapse:collapse;
+	border:1px solid #c0c0c0;
 }
 #input-table td{
 	
@@ -89,7 +91,8 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 40em;
+    height:30em;
 }
 
 /* The Close Button */
@@ -105,4 +108,17 @@
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+#previewImage{
+	text-align:center;
+	border:1px solid #c0c0c0;
+	width:90%;
+	height:24em;
+	margin:auto;
+	display:inline-block;
+}
+#previewImage image{
+	
+	margin:auto;
+	display:inline-block;
 }

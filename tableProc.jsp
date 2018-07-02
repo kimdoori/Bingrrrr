@@ -124,8 +124,8 @@
 			</tr>
 			<tr>
 				<td>
-					<button class="back" type="button" onclick="goBack()">뒤로
-						가기</button><input type="submit"
+					<button class="button" type="button" onclick="goBack()">뒤로
+						가기</button><input type="submit" class="button"
 					value="다음으로">
 				</td>
 			</tr>

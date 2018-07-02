@@ -48,7 +48,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="reset" value="다시 작성"> <input
+				<td colspan="2"><input class="button" type="reset" value="다시 작성"> <input class="button"
 					type="submit" value="다음으로"></td>
 			</tr>
 

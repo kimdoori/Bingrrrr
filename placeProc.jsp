@@ -76,6 +76,9 @@
 							int col = Integer.valueOf(request.getParameter("col"));
 							int space_num = Integer.valueOf(request.getParameter("space_num"));
 							int space_index = 0;
+							
+						
+
 							for (int i = 0; i < row; i++) {
 								int count = 1;
 
@@ -131,18 +134,18 @@
 			</tr>
 			<tr>
 				<td>
-					<button class="back" type="button" onclick="goBack()">뒤로
+					<button class="button" type="button" onclick="goBack()">뒤로
 						가기</button>
-					<button type="button"
+					<button type="button" class="button"
 						onclick="randomSeat(<%=option%>,<%=row %>,<%=col %>,<%=space_num%>,'<%=female_number%>','<%=male_number%>')">배치하기
-					</button> <button type="button" id="show-save">저장하기</button>
+					</button> <button type="button" class="button" id="show-save">저장하기</button>
 					<div id="myModal" class="modal">
 
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <button type="button" id="btn-Preview-Image">캡쳐</button>
-<a id="btn-Convert-Html2Image">저장</a>
+    <button type="button" id="btn-Preview-Image" class="button">캡쳐</button>
+<a id="btn-Convert-Html2Image"><button class="button" type="button">저장</button></a>
 
 
 <div id="previewImage"></div>
